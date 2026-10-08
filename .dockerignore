@@ -1,1 +1,26 @@
+# =============================================================================
+# BERMUDA Stealth Gateway NG — Production Build Boundary Filter
+# Architecture: Strict Default-Deny / Hermetic Allowlist Policy
+#
+# Invariants Enforced:
+# 1. Zero Client Leakage: index.html and cockpit assets are strictly quarantined.
+# 2. Zero Secret Contamination: Local environment, git, and keys never enter context.
+# 3. Minimal Build Context: Sub-second transfer time to container runtime daemon.
+# =============================================================================
 
+# -----------------------------------------------------------------------------
+# 1. HARD DENY: Block everything across the entire workspace by default
+# -----------------------------------------------------------------------------
+**
+
+# -----------------------------------------------------------------------------
+# 2. STRICT ALLOWLIST: Permit ONLY verified server sources & manifests
+# -----------------------------------------------------------------------------
+!go.mod
+!main.go
+!proxy.go
+!supervisor.go
+!cfedge.go
+!config.json
+!Dockerfile
+!.dockerignore
